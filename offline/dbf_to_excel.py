@@ -7,7 +7,6 @@ from openpyxl import Workbook
 
 
 EXCEL_MAX_ROWS = 1_048_576
-DATA_ROWS_PER_SHEET = EXCEL_MAX_ROWS - 1
 
 
 def convert_dbf(dbf_path: Path, output_dir: Path, encoding: str) -> Path:
@@ -48,13 +47,13 @@ def convert_dbf(dbf_path: Path, output_dir: Path, encoding: str) -> Path:
 def find_dbf_files(input_path: Path) -> list[Path]:
     if input_path.is_file():
         if input_path.suffix.lower() != ".dbf":
-            raise ValueError(f"不是 DBF 檔案: {input_path}")
+            raise ValueError(f"Not a DBF file: {input_path}")
         return [input_path]
 
     if input_path.is_dir():
         return sorted(input_path.glob("*.dbf"))
 
-    raise FileNotFoundError(f"找不到路徑: {input_path}")
+    raise FileNotFoundError(f"Path not found: {input_path}")
 
 
 def parse_args() -> argparse.Namespace:
@@ -90,14 +89,14 @@ def main() -> int:
     try:
         dbf_files = find_dbf_files(input_path)
         if not dbf_files:
-            print(f"找不到 .dbf 檔案: {input_path}")
+            print(f"No .dbf files found: {input_path}")
             return 1
 
-        print(f"找到 {len(dbf_files)} 個 DBF 檔案，編碼: {args.encoding}")
+        print(f"Found {len(dbf_files)} DBF file(s), encoding: {args.encoding}")
         for dbf_file in dbf_files:
             convert_dbf(dbf_file, output_dir, args.encoding)
 
-        print("全部轉換完成。")
+        print("All files converted.")
         return 0
     except Exception as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
