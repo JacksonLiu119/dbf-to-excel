@@ -23,9 +23,10 @@ Customers do not need to install Python.
 4. Download the `dbf-to-excel-windows` artifact.
 5. Unzip `dbf-to-excel-windows.zip`.
 6. Double-click `dbf-to-excel-gui.exe`.
-7. Select DBF files and an output folder.
-8. Click `Start Convert`.
-9. After conversion, click the button to open the Excel file or output folder.
+7. Click `選擇 DBF 檔案` and choose DBF files.
+8. Choose the output folder.
+9. Click `開始轉換`.
+10. After conversion, click `開啟 Excel` or `開啟輸出資料夾`.
 
 The ZIP also includes `convert.bat` for batch conversion from the `input` folder to the `output` folder.
 

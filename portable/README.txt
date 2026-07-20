@@ -1,31 +1,31 @@
-DBF to Excel - Windows Offline Version
+DBF 轉 Excel - Windows 離線版
 
-Easy GUI usage:
+最簡單使用方式：
 
-1. Double-click dbf-to-excel-gui.exe.
-2. Click Select DBF Files.
-3. Choose the output folder.
-4. Click Start Convert.
-5. After conversion, open the Excel file or output folder from the app.
+1. 雙擊 dbf-to-excel-gui.exe。
+2. 按「選擇 DBF 檔案」。
+3. 選擇輸出資料夾。
+4. 按「開始轉換」。
+5. 轉換完成後，可在程式中按「開啟 Excel」或「開啟輸出資料夾」。
 
-Batch folder usage:
+批次資料夾使用方式：
 
-1. Put DBF files in the input folder.
-2. Double-click convert.bat.
-3. Excel files will be created in the output folder.
+1. 把 DBF 檔案放到 input 資料夾。
+2. 雙擊 convert.bat。
+3. Excel 檔案會產生在 output 資料夾。
 
-If Chinese text is garbled:
+如果中文亂碼：
 
-Open the app and change Encoding from cp950 to big5 or utf-8, then convert again.
+請在程式右上角把編碼從 cp950 改成 big5 或 utf-8，然後重新轉換。
 
-For convert.bat, edit this part:
+如果使用 convert.bat，請用記事本打開 convert.bat，把這一段：
 
 -e cp950
 
-Change it to:
+改成：
 
 -e big5
 
-or:
+或：
 
 -e utf-8

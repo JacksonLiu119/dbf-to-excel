@@ -12,14 +12,14 @@ from dbf_to_excel import convert_dbf
 class DbfToExcelApp:
     def __init__(self, root: Tk) -> None:
         self.root = root
-        self.root.title("DBF to Excel")
+        self.root.title("DBF 轉 Excel")
         self.root.geometry("760x520")
         self.root.minsize(680, 460)
 
         self.files: list[Path] = []
         self.output_dir = StringVar(value=str(Path.cwd() / "output"))
         self.encoding = StringVar(value="cp950")
-        self.status = StringVar(value="Select DBF files to start.")
+        self.status = StringVar(value="請選擇 DBF 檔案。")
         self.last_outputs: list[Path] = []
 
         self.build_ui()
@@ -28,22 +28,22 @@ class DbfToExcelApp:
         container = Frame(self.root, padx=18, pady=16)
         container.pack(fill=BOTH, expand=True)
 
-        Label(container, text="DBF to Excel", font=("Segoe UI", 20, "bold")).pack(anchor="w")
+        Label(container, text="DBF 轉 Excel", font=("Microsoft JhengHei UI", 20, "bold")).pack(anchor="w")
         Label(
             container,
-            text="Select DBF files and convert them locally. Files are not uploaded.",
-            font=("Segoe UI", 10),
+            text="選擇 DBF 檔案後在本機轉成 Excel，檔案不會上傳。",
+            font=("Microsoft JhengHei UI", 10),
         ).pack(anchor="w", pady=(4, 14))
 
         toolbar = Frame(container)
         toolbar.pack(fill="x", pady=(0, 10))
 
-        Button(toolbar, text="Select DBF Files", command=self.choose_files, width=16).pack(side=LEFT)
-        Button(toolbar, text="Clear", command=self.clear_files, width=10).pack(side=LEFT, padx=(8, 0))
+        Button(toolbar, text="選擇 DBF 檔案", command=self.choose_files, width=16).pack(side=LEFT)
+        Button(toolbar, text="清除", command=self.clear_files, width=10).pack(side=LEFT, padx=(8, 0))
 
         encoding_frame = Frame(toolbar)
         encoding_frame.pack(side=RIGHT)
-        Label(encoding_frame, text="Encoding").pack(side=LEFT, padx=(0, 6))
+        Label(encoding_frame, text="編碼").pack(side=LEFT, padx=(0, 6))
         ttk.Combobox(
             encoding_frame,
             textvariable=self.encoding,
@@ -57,14 +57,14 @@ class DbfToExcelApp:
 
         output_frame = Frame(container)
         output_frame.pack(fill="x", pady=(12, 8))
-        Label(output_frame, text="Output Folder").pack(anchor="w")
+        Label(output_frame, text="輸出資料夾").pack(anchor="w")
 
         output_row = Frame(output_frame)
         output_row.pack(fill="x", pady=(4, 0))
         Label(output_row, textvariable=self.output_dir, relief="sunken", anchor="w").pack(
             side=LEFT, fill="x", expand=True, ipady=6
         )
-        Button(output_row, text="Browse", command=self.choose_output, width=10).pack(
+        Button(output_row, text="選擇", command=self.choose_output, width=10).pack(
             side=RIGHT, padx=(8, 0)
         )
 
@@ -72,7 +72,7 @@ class DbfToExcelApp:
         action_row.pack(fill="x", pady=(8, 8))
         self.convert_button = Button(
             action_row,
-            text="Start Convert",
+            text="開始轉換",
             command=self.start_convert,
             width=16,
             state="disabled",
@@ -80,7 +80,7 @@ class DbfToExcelApp:
         self.convert_button.pack(side=LEFT)
         self.open_file_button = Button(
             action_row,
-            text="Open Excel",
+            text="開啟 Excel",
             command=self.open_last_file,
             width=14,
             state="disabled",
@@ -88,7 +88,7 @@ class DbfToExcelApp:
         self.open_file_button.pack(side=LEFT, padx=(8, 0))
         Button(
             action_row,
-            text="Open Output Folder",
+            text="開啟輸出資料夾",
             command=self.open_output_folder,
             width=18,
         ).pack(side=LEFT, padx=(8, 0))
@@ -97,8 +97,8 @@ class DbfToExcelApp:
 
     def choose_files(self) -> None:
         paths = filedialog.askopenfilenames(
-            title="Select DBF Files",
-            filetypes=[("DBF files", "*.dbf"), ("All files", "*.*")],
+            title="選擇 DBF 檔案",
+            filetypes=[("DBF 檔案", "*.dbf"), ("所有檔案", "*.*")],
         )
         if not paths:
             return
@@ -115,10 +115,10 @@ class DbfToExcelApp:
         self.last_outputs.clear()
         self.refresh_file_list()
         self.open_file_button.config(state="disabled")
-        self.status.set("Select DBF files to start.")
+        self.status.set("請選擇 DBF 檔案。")
 
     def choose_output(self) -> None:
-        path = filedialog.askdirectory(title="Select Output Folder")
+        path = filedialog.askdirectory(title="選擇輸出資料夾")
         if path:
             self.output_dir.set(path)
 
@@ -128,7 +128,7 @@ class DbfToExcelApp:
             self.file_list.insert(END, str(path))
 
         self.convert_button.config(state="normal" if self.files else "disabled")
-        self.status.set(f"Selected {len(self.files)} DBF file(s)." if self.files else "Select DBF files to start.")
+        self.status.set(f"已選擇 {len(self.files)} 個 DBF 檔案。" if self.files else "請選擇 DBF 檔案。")
 
     def start_convert(self) -> None:
         if not self.files:
@@ -136,7 +136,7 @@ class DbfToExcelApp:
 
         self.convert_button.config(state="disabled")
         self.open_file_button.config(state="disabled")
-        self.status.set("Converting. Please wait...")
+        self.status.set("轉換中，請稍候...")
         threading.Thread(target=self.convert_files, daemon=True).start()
 
     def convert_files(self) -> None:
@@ -154,13 +154,13 @@ class DbfToExcelApp:
     def convert_success(self) -> None:
         self.convert_button.config(state="normal")
         self.open_file_button.config(state="normal" if self.last_outputs else "disabled")
-        self.status.set(f"Done. Created {len(self.last_outputs)} Excel file(s).")
-        messagebox.showinfo("Done", "Excel files were created.")
+        self.status.set(f"轉換完成，共產生 {len(self.last_outputs)} 個 Excel 檔案。")
+        messagebox.showinfo("轉換完成", "Excel 檔案已產生。")
 
     def convert_failed(self, exc: Exception) -> None:
         self.convert_button.config(state="normal" if self.files else "disabled")
-        self.status.set("Conversion failed.")
-        messagebox.showerror("Conversion failed", str(exc))
+        self.status.set("轉換失敗。")
+        messagebox.showerror("轉換失敗", str(exc))
 
     def open_last_file(self) -> None:
         if self.last_outputs:
