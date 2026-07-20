@@ -27,3 +27,15 @@
 ## 離線版
 
 如果 DBF 檔案很大，建議使用 `offline` 資料夾內的 Python 離線版。它支援批次轉換整個資料夾，並且在 Excel 列數超過上限時自動分工作表。
+
+## 給客戶使用的 Windows 版
+
+GitHub Actions 會自動產生 `dbf-to-excel-windows.zip`。客戶不需要安裝 Python：
+
+1. 到 GitHub repository 的 `Actions`。
+2. 點選最新的 `Build Windows EXE`。
+3. 下載 `dbf-to-excel-windows` artifact。
+4. 解壓縮 `dbf-to-excel-windows.zip`。
+5. 把 DBF 放進 `input`。
+6. 雙擊 `convert.bat`。
+7. Excel 會產生在 `output`。

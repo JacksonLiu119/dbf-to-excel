@@ -4,6 +4,8 @@
 
 ## Windows 使用方式
 
+給客戶使用時，建議下載 GitHub Actions 產生的 `dbf-to-excel-windows.zip`，不需要安裝 Python。以下方式是給開發者或需要自己打包時使用。
+
 1. 安裝 Python 3.11 或更新版本，安裝時勾選 `Add python.exe to PATH`。
 2. 第一次使用先執行 `install.bat`。
 3. 把 `.dbf` 檔案放進 `input` 資料夾。
