@@ -16,7 +16,13 @@ DBF 轉 Excel - Windows 離線版
 
 如果中文亂碼：
 
-請在程式右上角把編碼從 cp950 改成 big5 或 utf-8，然後重新轉換。
+請在程式右上角依序嘗試：
+
+1. 繁體中文 Windows（cp950）
+2. 繁體中文 Big5（big5）
+3. UTF-8（utf-8）
+
+然後重新轉換。
 
 如果使用 convert.bat，請用記事本打開 convert.bat，把這一段：
 

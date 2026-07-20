@@ -33,5 +33,6 @@ The ZIP also includes `convert.bat` for batch conversion from the `input` folder
 ## Notes
 
 - Common Taiwan DBF encoding is `cp950` or `big5`.
+- In the app, `繁體中文 Windows（cp950）` is the recommended default for Taiwan DBF files.
 - Excel supports 1,048,576 rows per sheet. The offline converter automatically creates additional sheets when needed.
 - If a DBF uses memo files such as `.dbt` or `.fpt`, keep those files in the same folder as the DBF.

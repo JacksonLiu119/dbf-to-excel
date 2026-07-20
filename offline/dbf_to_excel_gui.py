@@ -9,6 +9,15 @@ from tkinter import filedialog, messagebox, ttk
 from dbf_to_excel import convert_dbf
 
 
+ENCODING_OPTIONS = {
+    "繁體中文 Windows（cp950）": "cp950",
+    "繁體中文 Big5（big5）": "big5",
+    "UTF-8（utf-8）": "utf-8",
+    "簡體中文（gb18030）": "gb18030",
+    "英文/歐洲語系（windows-1252）": "windows-1252",
+}
+
+
 class DbfToExcelApp:
     def __init__(self, root: Tk) -> None:
         self.root = root
@@ -18,7 +27,7 @@ class DbfToExcelApp:
 
         self.files: list[Path] = []
         self.output_dir = StringVar(value=str(Path.cwd() / "output"))
-        self.encoding = StringVar(value="cp950")
+        self.encoding = StringVar(value="繁體中文 Windows（cp950）")
         self.status = StringVar(value="請選擇 DBF 檔案。")
         self.last_outputs: list[Path] = []
 
@@ -47,8 +56,8 @@ class DbfToExcelApp:
         ttk.Combobox(
             encoding_frame,
             textvariable=self.encoding,
-            values=["cp950", "big5", "utf-8", "gb18030", "windows-1252"],
-            width=14,
+            values=list(ENCODING_OPTIONS.keys()),
+            width=32,
             state="readonly",
         ).pack(side=LEFT)
 
@@ -143,7 +152,7 @@ class DbfToExcelApp:
         try:
             output_dir = Path(self.output_dir.get())
             outputs = [
-                convert_dbf(dbf_file, output_dir, self.encoding.get())
+                convert_dbf(dbf_file, output_dir, ENCODING_OPTIONS[self.encoding.get()])
                 for dbf_file in self.files
             ]
             self.last_outputs = outputs
