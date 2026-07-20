@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DBF 轉 Excel</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  </head>
+  <body>
+    <main class="app">
+      <section class="panel">
+        <div class="heading">
+          <p class="eyebrow">DBF TO EXCEL</p>
+          <h1>DBF 轉 Excel</h1>
+          <p>選擇一個或多個 .dbf 檔案，在瀏覽器內轉成 .xlsx，不上傳到任何伺服器。</p>
+        </div>
+
+        <div class="controls">
+          <label class="field">
+            <span>中文編碼</span>
+            <select id="encoding">
+              <option value="big5" selected>Big5 / CP950</option>
+              <option value="utf-8">UTF-8</option>
+              <option value="gb18030">GB18030</option>
+              <option value="windows-1252">Windows-1252</option>
+            </select>
+          </label>
+
+          <label class="dropzone" for="dbfFiles" id="dropzone">
+            <input id="dbfFiles" type="file" accept=".dbf" multiple>
+            <span class="drop-title">選擇 DBF 檔案</span>
+            <span class="drop-subtitle">或拖曳檔案到這裡</span>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="convertBtn" type="button" disabled>轉換並下載 Excel</button>
+          <button id="clearBtn" class="secondary" type="button" disabled>清除</button>
+        </div>
+
+        <div class="status" id="status">尚未選擇檔案。</div>
+        <ul class="file-list" id="fileList"></ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
