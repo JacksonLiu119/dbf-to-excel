@@ -1,6 +1,10 @@
 .DS_Store
 Thumbs.db
 node_modules/
+__pycache__/
+*.pyc
+dist/
+build/
 *.log
 .env
 .env.*
