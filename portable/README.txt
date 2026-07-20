@@ -2,7 +2,7 @@ DBF 轉 Excel - Windows 離線版
 
 最簡單使用方式：
 
-1. 雙擊 dbf-to-excel-gui.exe。
+1. 雙擊 轉換程式.exe。
 2. 按「選擇 DBF 檔案」。
 3. 選擇輸出資料夾。
 4. 按「開始轉換」。

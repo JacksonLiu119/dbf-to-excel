@@ -22,7 +22,7 @@ Customers do not need to install Python.
 3. Open the latest `Build Windows EXE` run.
 4. Download the `dbf-to-excel-windows` artifact.
 5. Unzip `dbf-to-excel-windows.zip`.
-6. Double-click `dbf-to-excel-gui.exe`.
+6. Double-click `轉換程式.exe`.
 7. Click `選擇 DBF 檔案` and choose DBF files.
 8. Choose the output folder.
 9. Click `開始轉換`.

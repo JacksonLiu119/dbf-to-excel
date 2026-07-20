@@ -4,7 +4,7 @@ For customer delivery, use the GitHub Actions ZIP package. Customers do not need
 
 The packaged ZIP includes:
 
-- `dbf-to-excel-gui.exe`: Windows GUI converter.
+- `轉換程式.exe`: Windows GUI converter.
 - `dbf-to-excel.exe`: command-line converter.
 - `convert.bat`: batch conversion helper.
 - `input`: folder for batch DBF input.

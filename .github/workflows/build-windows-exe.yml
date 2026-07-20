@@ -26,7 +26,7 @@ jobs:
       - name: Build executables
         run: |
           pyinstaller --onefile --name dbf-to-excel offline/dbf_to_excel.py
-          pyinstaller --onefile --windowed --name dbf-to-excel-gui offline/dbf_to_excel_gui.py
+          pyinstaller --onefile --windowed --name 轉換程式 offline/dbf_to_excel_gui.py
 
       - name: Prepare portable package
         shell: pwsh
@@ -34,7 +34,7 @@ jobs:
           New-Item -ItemType Directory -Force package\input | Out-Null
           New-Item -ItemType Directory -Force package\output | Out-Null
           Copy-Item dist\dbf-to-excel.exe package\dbf-to-excel.exe
-          Copy-Item dist\dbf-to-excel-gui.exe package\dbf-to-excel-gui.exe
+          Copy-Item dist\轉換程式.exe package\轉換程式.exe
           Copy-Item portable\convert.bat package\convert.bat
           Copy-Item portable\README.txt package\README.txt
           Compress-Archive -Path package\* -DestinationPath dbf-to-excel-windows.zip -Force
